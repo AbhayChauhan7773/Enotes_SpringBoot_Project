@@ -1,44 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org"
-	th:replace="~{ base :: layout(~{::title} , ~{::section} ) }">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{ base :: layout(~{::title}, ~{::section}) }">
 <head>
 <meta charset="ISO-8859-1">
 <title>Edit Notes</title>
 </head>
 <body>
-	<section>
-		<div class="container mt-2">
-			<div class="row">
-				<div class="col-md-10 offset-md-1">
-					<div class="card">
-						<div class="card-header text-center">
-							<h3>Edit your Notes</h3>
+<section>
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>Edit your Note</h3>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/user/updateNotes}" th:object="${note}" method="post">
+                            <!-- Hidden ID field -->
+                            <input type="hidden" th:field="*{id}"/>
 
-						</div>
-						<div class="card-body">
-							<form action="#" method="post">
-								<div class="mb-3">
-									<label>Enter Title</label> <input type="text" name="title"
-										class="form-control">
-								</div>
+                            <div class="mb-3">
+                                <label>Enter Title</label>
+                                <input type="text" th:field="*{title}" class="form-control"/>
+                            </div>
 
-								<div class="mb-3">
-									<label>Enter Description</label>
-									<textarea rows="6" cols="" class="form-control"
-										name="descrption"></textarea>
-								</div>
+                            <div class="mb-3">
+                                <label>Enter Description</label>
+                                <textarea rows="6" th:field="*{description}" class="form-control"></textarea>
+                            </div>
 
-								<button class="btn btn-primary mt-4">Update</button>
-
-
-
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
+                            <button class="btn btn-primary mt-4">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

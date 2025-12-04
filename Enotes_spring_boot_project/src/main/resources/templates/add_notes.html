@@ -16,23 +16,21 @@
 
 						</div>
 						<div class="card-body">
-							<form action="#" method="post">
-								<div class="mb-3">
-									<label>Enter Title</label> <input type="text" name="title"
-										class="form-control">
-								</div>
+							<form th:action="@{/user/addNotes}" th:object="${note}" method="post">
+    <div class="mb-3">
+        <label>Enter Title</label>
+        <input type="text" th:field="*{title}" class="form-control"/>
+    </div>
 
-								<div class="mb-3">
-									<label>Enter Description</label>
-									<textarea rows="6" cols="" class="form-control"
-										name="descrption"></textarea>
-								</div>
+    <div class="mb-3">
+        <label>Enter Description</label>
+        <textarea rows="6" th:field="*{description}" class="form-control"></textarea>
+    </div>
 
-								<button class="btn btn-primary mt-4">Save</button>
+    <button class="btn btn-primary mt-4">Save</button>
+</form>
 
 
-
-							</form>
 						</div>
 					</div>
 				</div>

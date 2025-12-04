@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org"
-	th:replace="~{ base :: layout(~{::title} , ~{::section} ) }">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{ base :: layout(~{::title}, ~{::section}) }">
 <head>
-<meta charset="ISO-8859-1">
-<title>View Notes</title>
+    <meta charset="ISO-8859-1">
+    <title>View Notes</title>
 </head>
 <body>
-	<section>
-		<div class="container-fluid p-2">
-			<h4 class="text-center">View All Notes</h4>
-			<div class="row">
-				<div class="col-md-10 offset-md-1 mt-2">
-					<div class="card">
-						<div class="card-body">
-							<div class="text-center">
-								<i class="fa-solid fa-book fa-2x"></i>
-							</div>
+<section>
+    <div class="container-fluid p-2">
+        <h4 class="text-center mb-3">View All Notes</h4>
 
-							<p>What is Python ?</p>
-							<p>Python is programming Langauage</p>
-							<p>Publish Date : 2023-05-08</p>
+        <div class="row" th:if="${#lists.isEmpty(notes)}">
+            <div class="col-md-10 offset-md-1">
+                <div class="alert alert-info text-center">
+                    No notes found. <a th:href="@{/user/addNotes}">Add a new note</a>
+                </div>
+            </div>
+        </div>
 
-							<div class="text-center">
-								<a href="editNotes" class="btn btn-primary btn-sm">Edit</a> <a
-									href="deleteNotes" class="btn btn-danger btn-sm">Delete</a>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-	</section>
+        <div class="row" th:each="note : ${notes}">
+            <div class="col-md-10 offset-md-1 mt-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <i class="fa-solid fa-book fa-2x"></i>
+                        </div>
+                        <h5 class="card-title" th:text="${note.title}">Note Title</h5>
+                        <p class="card-text" th:text="${note.description}">Note Description</p>
+                        <p class="text-muted" th:text="'Publish Date: ' +  ${note.date}">Publish Date</p>
+                        <div class="text-center">
+                            <a th:href="@{'/user/editNotes/' + ${note.id}}" class="btn btn-primary btn-sm">Edit</a>
+                            <a th:href="@{'/user/deleteNotes/' + ${note.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

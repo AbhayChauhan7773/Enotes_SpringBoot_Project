@@ -32,7 +32,7 @@
 							Home</a></li>
 
 					<th:block th:if="${user!=NULL}">
-						<li class="nav-item"><a class="nav-link" href="addNotes"><i
+						<li class="nav-item"><a class="nav-link" th:href=@{/user/addNotes}><i
 								class="fa-solid fa-plus"></i> Add </a></li>
 						<li class="nav-item"><a class="nav-link" href="viewNotes"><i
 								class="fa-solid fa-list"></i> View</a></li>
