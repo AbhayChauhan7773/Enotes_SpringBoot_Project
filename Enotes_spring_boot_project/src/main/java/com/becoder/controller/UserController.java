@@ -1,7 +1,6 @@
 package com.becoder.controller;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +85,7 @@ public String viewNotes(Model m, Principal principal) {
 	 @PostMapping("/updateNotes")
     public String updateNotes(@ModelAttribute Notes note, Principal p) {
         String email = p.getName();
-        User user = userRepo.findByEmail(email);
+         userRepo.findByEmail(email);
 
         Notes existingNote = notesRepo.findById(note.getId()).orElse(null);
         if (existingNote != null && existingNote.getUser().getEmail().equals(email)) {
